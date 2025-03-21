@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设置 - 清悦笔记</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #F9F9FB;
+            color: #1C1C1E;
+            padding-bottom: 80px;
+        }
+        
+        .header-shadow {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        
+        .settings-card {
+            transition: all 0.2s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .settings-card:active {
+            transform: scale(0.98);
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1C1C1E;
+                color: #FFFFFF;
+            }
+            
+            .bg-white {
+                background-color: #2C2C2E !important;
+            }
+            
+            .border-gray-200 {
+                border-color: #38383A !important;
+            }
+            
+            .text-gray-600 {
+                color: #98989F !important;
+            }
+            
+            .text-gray-500 {
+                color: #8E8E93 !important;
+            }
+            
+            .header-shadow {
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            }
+        }
+    </style>
+</head>
+<body class="text-base">
+    <!-- 头部 -->
+    <header class="sticky top-0 z-10 bg-white header-shadow">
+        <div class="flex justify-between items-center px-4 pt-10 pb-4">
+            <div class="flex items-center">
+                <h1 class="text-xl font-semibold">设置</h1>
+            </div>
+            <div class="flex space-x-4 text-lg text-gray-600">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- 用户信息 -->
+    <section class="mt-4 mx-4">
+        <div class="bg-white rounded-xl shadow-sm p-4 mb-6 flex items-center">
+            <div class="w-16 h-16 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center text-white text-2xl font-bold mr-4">
+                X
+            </div>
+            <div class="flex-1">
+                <h3 class="text-lg font-semibold">小明</h3>
+                <p class="text-sm text-gray-500">xiaoming@example.com</p>
+            </div>
+            <div class="text-blue-500">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- 设置选项网格 -->
+    <section class="mt-2 mx-4">
+        <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">应用设置</h2>
+        
+        <div class="settings-grid mb-6">
+            <!-- 设置卡片 -->
+            <div class="settings-card bg-white rounded-xl p-4 flex items-center">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white text-lg mr-3">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <div class="flex-1">
+                    <h3 class="font-medium">深色模式</h3>
+                    <p class="text-xs text-gray-500 mt-1">跟随系统</p>
+                </div>
+                <div class="text-gray-400">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+            
+            <div class="settings-card bg-white rounded-xl p-4 flex items-center">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center text-white text-lg mr-3">
+                    <i class="fas fa-sync"></i>
+                </div>
+                <div class="flex-1">
+                    <h3 class="font-medium">同步</h3>
+                    <p class="text-xs text-gray-500 mt-1">iCloud</p>
+                </div>
+                <div class="text-gray-400">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+            
+            <div class="settings-card bg-white rounded-xl p-4 flex items-center">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-white text-lg mr-3">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <div class="flex-1">
+                    <h3 class="font-medium">通知</h3>
+                    <p class="text-xs text-gray-500 mt-1">已开启</p>
+                </div>
+                <div class="text-gray-400">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+            
+            <div class="settings-card bg-white rounded-xl p-4 flex items-center">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-yellow-400 to-yellow-500 flex items-center justify-center text-white text-lg mr-3">
+                    <i class="fas fa-font"></i>
+                </div>
+                <div class="flex-1">
+                    <h3 class="font-medium">文字大小</h3>
+                    <p class="text-xs text-gray-500 mt-1">默认</p>
+                </div>
+                <div class="text-gray-400">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">高级选项</h2>
+        
+        <div class="settings-grid">
+            <div class="settings-card bg-white rounded-xl p-4 flex items-center">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center text-white text-lg mr-3">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="flex-1">
+                    <h3 class="font-medium">隐私保护</h3>
+                    <p class="text-xs text-gray-500 mt-1">面容ID/密码</p>
+                </div>
+                <div class="text-gray-400">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+            
+            <div class="settings-card bg-white rounded-xl p-4 flex items-center">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white text-lg mr-3">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <div class="flex-1">
+                    <h3 class="font-medium">备份</h3>
+                    <p class="text-xs text-gray-500 mt-1">自动备份</p>
+                </div>
+                <div class="text-gray-400">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+            
+            <div class="settings-card bg-white rounded-xl p-4 flex items-center">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-400 to-indigo-600 flex items-center justify-center text-white text-lg mr-3">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <div class="flex-1">
+                    <h3 class="font-medium">日历</h3>
+                    <p class="text-xs text-gray-500 mt-1">同步日历事件</p>
+                </div>
+                <div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="settings-card bg-white rounded-xl p-4 flex items-center">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-gray-400 to-gray-600 flex items-center justify-center text-white text-lg mr-3">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div class="flex-1">
+                    <h3 class="font-medium">关于</h3>
+                    <p class="text-xs text-gray-500 mt-1">v1.0.0</p>
+                </div>
+                <div class="text-gray-400">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+    </div>
+    </section>
+</body>
+</html> 

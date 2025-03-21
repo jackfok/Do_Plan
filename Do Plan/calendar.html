@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日历 - 清悦笔记</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #F9F9FB;
+            color: #1C1C1E;
+            padding-bottom: 80px;
+        }
+        
+        .header-shadow {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1px;
+        }
+        
+        .calendar-day {
+            aspect-ratio: 1/1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.2s;
+        }
+        
+        .calendar-day:active {
+            background-color: #F2F2F7;
+        }
+        
+        .calendar-day.today .day-number {
+            background-color: #007AFF;
+            color: white;
+        }
+        
+        .day-number {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .has-event::after {
+            content: '';
+            display: block;
+            width: 4px;
+            height: 4px;
+            background-color: #007AFF;
+            border-radius: 50%;
+            margin-top: 2px;
+        }
+        
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 12px;
+        }
+        
+        .event-card {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s;
+        }
+        
+        .event-card:active {
+            transform: scale(0.98);
+        }
+        
+        .add-button {
+            box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+            transition: all 0.2s;
+        }
+        
+        .add-button:active {
+            transform: scale(0.95);
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #1C1C1E;
+                color: #FFFFFF;
+            }
+            
+            .bg-white {
+                background-color: #2C2C2E !important;
+            }
+            
+            .border-gray-200 {
+                border-color: #38383A !important;
+            }
+            
+            .text-gray-600 {
+                color: #98989F !important;
+            }
+            
+            .text-gray-500 {
+                color: #8E8E93 !important;
+            }
+            
+            .calendar-day:active {
+                background-color: #38383A;
+            }
+            
+            .header-shadow {
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            }
+        }
+    </style>
+</head>
+<body class="text-base">
+    <!-- 头部 -->
+    <header class="sticky top-0 z-10 bg-white header-shadow">
+        <div class="flex justify-between items-center px-4 pt-10 pb-4">
+            <div class="flex items-center">
+                <h1 class="text-xl font-semibold">日历</h1>
+            </div>
+            <div class="flex space-x-4 text-lg text-gray-600">
+                <i class="fas fa-search"></i>
+                <i class="fas fa-ellipsis-h"></i>
+            </div>
+        </div>
+        
+        <!-- 月份选择 -->
+        <div class="flex justify-between items-center px-4 py-2 bg-white">
+            <button class="text-blue-500">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <h2 class="text-lg font-medium">2023年7月</h2>
+            <button class="text-blue-500">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- 日历网格 -->
+    <section class="bg-white pt-2 pb-4">
+        <!-- 星期标题 -->
+        <div class="calendar-grid px-2 mb-2">
+            <div class="text-center text-xs text-gray-500 font-medium">日</div>
+            <div class="text-center text-xs text-gray-500 font-medium">一</div>
+            <div class="text-center text-xs text-gray-500 font-medium">二</div>
+            <div class="text-center text-xs text-gray-500 font-medium">三</div>
+            <div class="text-center text-xs text-gray-500 font-medium">四</div>
+            <div class="text-center text-xs text-gray-500 font-medium">五</div>
+            <div class="text-center text-xs text-gray-500 font-medium">六</div>
+        </div>
+        
+        <!-- 日历天数 -->
+        <div class="calendar-grid px-2">
+            <!-- 第一周 -->
+            <div class="calendar-day text-gray-400">
+                <div class="day-number">25</div>
+            </div>
+            <div class="calendar-day text-gray-400">
+                <div class="day-number">26</div>
+            </div>
+            <div class="calendar-day text-gray-400">
+                <div class="day-number">27</div>
+            </div>
+            <div class="calendar-day text-gray-400">
+                <div class="day-number">28</div>
+            </div>
+            <div class="calendar-day text-gray-400">
+                <div class="day-number">29</div>
+            </div>
+            <div class="calendar-day text-gray-400">
+                <div class="day-number">30</div>
+            </div>
+            <div class="calendar-day">
+                <div class="day-number">1</div>
+            </div>
+            
+            <!-- 第二周 -->
+            <div class="calendar-day">
+                <div class="day-number">2</div>
+            </div>
+            <div class="calendar-day">
+                <div class="day-number">3</div>
+            </div>
+            <div class="calendar-day">
+                <div class="day-number">4</div>
+            </div>
+            <div class="calendar-day has-event">
+                <div class="day-number">5</div>
+            </div>
+            <div class="calendar-day">
+                <div class="day-number">6</div>
+            </div>
+            <div class="calendar-day">
+                <div class="day-number">7</div>
+            </div>
+            <div class="calendar-day">
+                <div class="day-number">8</div>
+            </div>
+            
+            <!-- 第三周 -->
+            <div class="calendar-day">
+                <div class="day-number">9</div>
+            </div>
+            <div class="calendar-day has-event">
+                <div class="day-number">10</div>
+            </div>
+            <div class="calendar-day">
+                <div class="day-number">11</div>
+            </div>
+            <div class="calendar-day">
+                <div class="day-number">12</div>
+            </div>
+            <div class="calendar-day">
+                <div class="day-number">13</div>
+            </div>
+            <div class="calendar-day">
+                <div class="day-number">14</div>
+            </div>
+            <div class="calendar-day today">
+                <div class="day-number">15</div>
+            </div>
+            
+            <!-- 第四周 -->
+            <div class="calendar-day">
+                <div class="day-number">16</div>
+            </div>
+            <div class="calendar-day">
+                <div class="day-number">17</div>
+            </div>
+            <div class="calendar-day has-event">
+                <div class="day-number">18</div>
+            </div>
+            <div class="calendar-day">
+                <div class="day-number">19</div>
+            </div>
+            <div class="calendar-day has-event">
+                <div class="day-number">20</div>
+            </div>
+            <div class="calendar-day">
+                <div class="day-number">21</div>
+            </div>
+            <div class="calendar-day">
+                <div class="day-number">22</div>
+            </div>
+            
+            <!-- 第五周 -->
+            <div class="calendar-day">
+                <div class="day-number">23</div>
+            </div>
+            <div class="calendar-day">
+                <div class="day-number">24</div>
+            </div>
+            <div class="calendar-day">
+                <div class="day-number">25</div>
+            </div>
+            <div class="calendar-day">
+                <div class="day-number">26</div>
+            </div>
+            <div class="calendar-day">
+                <div class="day-number">27</div>
+            </div>
+            <div class="calendar-day has-event">
+                <div class="day-number">28</div>
+            </div>
+            <div class="calendar-day">
+                <div class="day-number">29</div>
+            </div>
+            
+            <!-- 第六周 -->
+            <div class="calendar-day">
+                <div class="day-number">30</div>
+            </div>
+            <div class="calendar-day">
+                <div class="day-number">1</div>
+            </div>
+            <div class="calendar-day">
+                <div class="day-number">2</div>
+            </div>
+            <div class="calendar-day">
+                <div class="day-number">3</div>
+            </div>
+            <div class="calendar-day">
+                <div class="day-number">4</div>
+            </div>
+            <div class="calendar-day">
+                <div class="day-number">5</div>
+            </div>
+            <div class="calendar-day">
+                <div class="day-number">6</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 添加按钮 -->
+    <div class="fixed right-6 bottom-24">
+        <button class="add-button flex items-center justify-center w-14 h-14 bg-blue-500 rounded-full text-white text-2xl shadow-lg">
+            <i class="fas fa-plus"></i>
+        </button>
+    </div>
+</body>
+</html> 

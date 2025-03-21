@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>清悦笔记 - 设计原型展示</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            padding: 20px;
+        }
+        
+        .prototype-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .prototype-frame {
+            width: 100%;
+            background-color: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .prototype-frame:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .frame-header {
+            background-color: #f8f8f8;
+            padding: 12px 15px;
+            border-bottom: 1px solid #eaeaea;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .frame-title {
+            font-weight: 600;
+            font-size: 16px;
+            color: #333;
+        }
+        
+        .frame-content {
+            height: 667px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .device-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .zoom-controls {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            display: flex;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            padding: 5px 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .zoom-button {
+            background: none;
+            border: none;
+            font-size: 14px;
+            color: #007aff;
+            cursor: pointer;
+            padding: 0 5px;
+        }
+        
+        .zoom-indicator {
+            font-size: 14px;
+            padding: 0 8px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #333;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #007aff;
+            display: inline-block;
+        }
+        
+        .project-description {
+            max-width: 800px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #121212;
+                color: #f0f0f0;
+            }
+            
+            .prototype-frame {
+                background-color: #1e1e1e;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            }
+            
+            .frame-header {
+                background-color: #2c2c2e;
+                border-bottom: 1px solid #3a3a3c;
+            }
+            
+            .frame-title {
+                color: #f0f0f0;
+            }
+            
+            .section-title {
+                color: #f0f0f0;
+                border-bottom-color: #0a84ff;
+            }
+            
+            .zoom-controls {
+                background-color: rgba(40, 40, 40, 0.8);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="text-4xl font-bold mb-4">清悦笔记 - UI/UX 原型设计</h1>
+    
+    <div class="project-description">
+        <p>
+            「清悦笔记」是一款极简而功能强大的笔记应用，参考 Things 3 的设计理念，专为高效记录和组织个人信息而设计。以下是各功能界面的完整原型设计，采用平铺网格视图以便于比较和分析。
+        </p>
+    </div>
+    
+    <div class="prototype-grid">
+        <!-- 今日视图 -->
+        <div class="prototype-frame">
+            <div class="frame-header">
+                <span class="frame-title">今日视图</span>
+                <span class="text-sm text-gray-500">today.html</span>
+            </div>
+            <div class="frame-content">
+                <iframe class="device-frame" src="today.html" frameborder="0"></iframe>
+                <div class="zoom-controls">
+                    <button class="zoom-button" onclick="zoomFrame(this, -0.1)">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <span class="zoom-indicator">100%</span>
+                    <button class="zoom-button" onclick="zoomFrame(this, 0.1)">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 笔记列表 -->
+        <div class="prototype-frame">
+            <div class="frame-header">
+                <span class="frame-title">笔记列表</span>
+                <span class="text-sm text-gray-500">notes.html</span>
+            </div>
+            <div class="frame-content">
+                <iframe class="device-frame" src="notes.html" frameborder="0"></iframe>
+                <div class="zoom-controls">
+                    <button class="zoom-button" onclick="zoomFrame(this, -0.1)">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <span class="zoom-indicator">100%</span>
+                    <button class="zoom-button" onclick="zoomFrame(this, 0.1)">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 编辑笔记 -->
+        <div class="prototype-frame">
+            <div class="frame-header">
+                <span class="frame-title">编辑笔记</span>
+                <span class="text-sm text-gray-500">edit.html</span>
+            </div>
+            <div class="frame-content">
+                <iframe class="device-frame" src="edit.html" frameborder="0"></iframe>
+                <div class="zoom-controls">
+                    <button class="zoom-button" onclick="zoomFrame(this, -0.1)">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <span class="zoom-indicator">100%</span>
+                    <button class="zoom-button" onclick="zoomFrame(this, 0.1)">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 分类页面 -->
+        <div class="prototype-frame">
+            <div class="frame-header">
+                <span class="frame-title">分类管理</span>
+                <span class="text-sm text-gray-500">categories.html</span>
+            </div>
+            <div class="frame-content">
+                <iframe class="device-frame" src="categories.html" frameborder="0"></iframe>
+                <div class="zoom-controls">
+                    <button class="zoom-button" onclick="zoomFrame(this, -0.1)">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <span class="zoom-indicator">100%</span>
+                    <button class="zoom-button" onclick="zoomFrame(this, 0.1)">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 日历视图 -->
+        <div class="prototype-frame">
+            <div class="frame-header">
+                <span class="frame-title">日历视图</span>
+                <span class="text-sm text-gray-500">calendar.html</span>
+            </div>
+            <div class="frame-content">
+                <iframe class="device-frame" src="calendar.html" frameborder="0"></iframe>
+                <div class="zoom-controls">
+                    <button class="zoom-button" onclick="zoomFrame(this, -0.1)">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <span class="zoom-indicator">100%</span>
+                    <button class="zoom-button" onclick="zoomFrame(this, 0.1)">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 设置页面 -->
+        <div class="prototype-frame">
+            <div class="frame-header">
+                <span class="frame-title">设置页面</span>
+                <span class="text-sm text-gray-500">settings.html</span>
+            </div>
+            <div class="frame-content">
+                <iframe class="device-frame" src="settings.html" frameborder="0"></iframe>
+                <div class="zoom-controls">
+                    <button class="zoom-button" onclick="zoomFrame(this, -0.1)">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <span class="zoom-indicator">100%</span>
+                    <button class="zoom-button" onclick="zoomFrame(this, 0.1)">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function zoomFrame(button, delta) {
+            const controls = button.closest('.zoom-controls');
+            const frame = controls.previousElementSibling;
+            
+            // 获取当前缩放比例
+            const zoomIndicator = controls.querySelector('.zoom-indicator');
+            let currentZoom = parseFloat(zoomIndicator.textContent) / 100;
+            
+            // 应用新的缩放比例
+            currentZoom = Math.max(0.5, Math.min(1.5, currentZoom + delta));
+            
+            // 更新iframe缩放
+            frame.style.transform = `scale(${currentZoom})`;
+            frame.style.transformOrigin = 'top center';
+            
+            // 更新缩放比例显示
+            zoomIndicator.textContent = `${Math.round(currentZoom * 100)}%`;
+        }
+    </script>
+</body>
+</html> 
